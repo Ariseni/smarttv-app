@@ -1,6 +1,5 @@
 import { SliderRow } from "../components/SliderRow";
 import { useGenres } from "../hooks/useTmdb";
-import { Button } from "../components/Button";
 
 export const HomePage = () => {
   const { data: genres } = useGenres("movie");
