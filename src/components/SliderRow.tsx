@@ -1,3 +1,5 @@
+"use client";
+
 import Slider, { Settings } from "react-slick";
 import { Movie, MovieCard } from "./MovieCard";
 import {
@@ -24,7 +26,6 @@ export const SliderRow = <T extends "search" | "discover">({
     url: `${tmdbApiUrl}/${listType}/${list}`,
     filterParams,
   });
-
   function beforeChange(index: number, nextIndex: number) {
     const totalSlides = data?.pages.flatMap((page) => page.results).length || 0;
     if (
@@ -33,12 +34,11 @@ export const SliderRow = <T extends "search" | "discover">({
       hasNextPage &&
       !isFetchingNextPage
     ) {
-      console.log("forward");
       fetchNextPage();
     }
   }
 
-  var settings: Settings = {
+  const settings: Settings = {
     dots: false,
     infinite: true,
     speed: 500,

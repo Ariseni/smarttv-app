@@ -1,37 +1,36 @@
-import { Link, useNavigate } from "react-router-dom";
+'use client'
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter(); // Get the router instance
 
   const handleSearch = () => {
-    // Navigate to a search route with query
-    navigate(`/search?q=${searchQuery}`);
+    router.push(`/search?q=${searchQuery}`);
   };
 
   return (
     <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-      {/* Buttons (as Links) */}
       <nav className="flex space-x-4">
-        <Link to="/" className="text-white px-3 py-2 rounded hover:bg-gray-700">
+        <Link href="/" className="text-white px-3 py-2 rounded hover:bg-gray-700">
           Home
         </Link>
         <Link
-          to="/movies"
+          href="/discover"
           className="text-white px-3 py-2 rounded hover:bg-gray-700"
         >
-          Movies
+          Discover
         </Link>
         <Link
-          to="/tv-shows"
+          href="/search"
           className="text-white px-3 py-2 rounded hover:bg-gray-700"
         >
-          TV Shows
+          Search
         </Link>
       </nav>
-
-      {/* Search Input */}
       <div className="flex items-center space-x-2">
         <input
           type="text"

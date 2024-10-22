@@ -1,7 +1,9 @@
-import { SliderRow } from "../components/SliderRow";
-import { useGenres } from "../hooks/useTmdb";
+"use client";
 
-export const HomePage = () => {
+import { SliderRow } from "../../components/SliderRow";
+import { useGenres } from "../../hooks/useTmdb";
+
+export default function Discover() {
   const { data: genres } = useGenres("movie");
   return (
     <>
@@ -18,4 +20,4 @@ export const HomePage = () => {
       ))}
     </>
   );
-};
+}

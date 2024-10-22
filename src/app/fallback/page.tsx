@@ -1,4 +1,6 @@
-export const FallbackPage = () => {
+"use client";
+
+export default function FallbackPage() {
   return (
     <div>
       <h1>Unsupported Browser Version</h1>
@@ -8,4 +10,4 @@ export const FallbackPage = () => {
       </p>
     </div>
   );
-};
+}
