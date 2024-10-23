@@ -57,7 +57,7 @@ export const SliderRow = <T extends "search" | "discover">({
     <Slider {...settings}>
       {data?.pages.flatMap((page) =>
         page.results.map((movie: Movie) => {
-          return <MovieCard key={movie.id} {...movie} />;
+          return <MovieCard listType={listType} key={movie.id} {...movie} />;
         })
       )}
     </Slider>
