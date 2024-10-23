@@ -40,10 +40,11 @@ export const SliderRow = <T extends "search" | "discover">({
 
   const settings: Settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,
+    adaptiveHeight: false,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 3 } },
       { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 2 } },
