@@ -7,6 +7,7 @@ export default function DiscoverLayout({
 }) {
   return (
     <div className="w-full px-0 sm:px-10">
+      <div id="modal-root" />
       {children}
       {modal}
     </div>

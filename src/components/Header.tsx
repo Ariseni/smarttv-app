@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,26 +15,17 @@ const Header = () => {
   return (
     <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
       <nav className="flex space-x-4">
-        <Link href="/" className="text-white px-3 py-2 rounded hover:bg-gray-700">
-          Home
-        </Link>
         <Link
           href="/discover"
           className="text-white px-3 py-2 rounded hover:bg-gray-700"
         >
           Discover
         </Link>
-        <Link
-          href="/search"
-          className="text-white px-3 py-2 rounded hover:bg-gray-700"
-        >
-          Search
-        </Link>
       </nav>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 ">
         <input
           type="text"
-          className="px-3 py-1 rounded border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          className="px-3 py-2 bg-white  max-w-40 sm:max-w-80 rounded border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

@@ -57,3 +57,33 @@ export const useGenres = (list: "movie" | "tv") => {
     staleTime: Infinity,
   });
 };
+
+export const useDetails = (id: string) => {
+  const fetchDetails = async () => {
+    const response = await axios.get(`/api/details`, {
+      params: {
+        id,
+      },
+    });
+    return response.data as Details;
+  };
+
+  return useQuery({
+    queryKey: ["details", id],
+    queryFn: fetchDetails,
+    staleTime: Infinity,
+  });
+};
+
+type Details = {
+  title: string;
+  runtime: number;
+  poster_path: string;
+  overview: string;
+  videos: {
+    results: {
+      key: string;
+      site: string;
+    }[];
+  };
+};

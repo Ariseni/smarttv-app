@@ -8,6 +8,7 @@ import {
   useDiscover,
 } from "../hooks/useTmdb";
 import { tmdbApiUrl } from "../constants/constants";
+import { useState } from "react";
 
 type SliderRowProps<T extends "search" | "discover"> = {
   listType: T;
@@ -22,11 +23,15 @@ export const SliderRow = <T extends "search" | "discover">({
   filterParams,
   listType,
 }: SliderRowProps<T>) => {
+  const [dragging, setDragging] = useState(false);
+
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useDiscover({
     url: `${tmdbApiUrl}/${listType}/${list}`,
     filterParams,
   });
+
   function beforeChange(index: number, nextIndex: number) {
+    setDragging(true);
     const totalSlides = data?.pages.flatMap((page) => page.results).length || 0;
     if (
       index > 0 &&
@@ -37,27 +42,40 @@ export const SliderRow = <T extends "search" | "discover">({
       fetchNextPage();
     }
   }
+  const afterChange = () => {
+    setDragging(false);
+  };
 
   const settings: Settings = {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     adaptiveHeight: false,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 3 } },
-      { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } },
-    ],
     beforeChange,
+    afterChange,
+    arrows: true,
+    responsive: [{ breakpoint: 480, settings: { arrows: false } }],
   };
 
   return (
     <Slider {...settings}>
       {data?.pages.flatMap((page) =>
         page.results.map((movie: Movie) => {
-          return <MovieCard listType={listType} key={movie.id} {...movie} />;
+          return (
+            <MovieCard
+              className="px-0 sm:px-5"
+              onClick={(e) => {
+                if (dragging) {
+                  e.preventDefault();
+                }
+              }}
+              listType={listType}
+              key={movie.id}
+              {...movie}
+            />
+          );
         })
       )}
     </Slider>

@@ -4,17 +4,17 @@ const apiKey = process.env.TMDB_API_KEY;
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const list = searchParams.get("list") || "";
-
+  const id = searchParams.get("id");
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/genre/${list}/list?language=en`,
+      `https://api.themoviedb.org/3/movie/${id}?append_to_response=videos`,
       {
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },
       }
     );
+
     return new Response(JSON.stringify(response.data), {
       status: 200,
       headers: { "Content-Type": "application/json" },
