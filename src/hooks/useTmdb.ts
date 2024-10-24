@@ -1,3 +1,4 @@
+import { Movie } from "@/components/MovieCard/MovieCard";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 import axios from "axios";
@@ -75,11 +76,7 @@ export const useDetails = (id: string) => {
   });
 };
 
-type Details = {
-  title: string;
-  runtime: number;
-  poster_path: string;
-  overview: string;
+type Details = Movie & {
   videos: {
     results: {
       key: string;

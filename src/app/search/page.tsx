@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { SliderRow } from "../../components/SliderRow";
+import { SliderRow } from "../../components/Slider/SliderRow";
 
 export default function Search() {
   const searchParams = useSearchParams();

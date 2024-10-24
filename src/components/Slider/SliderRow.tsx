@@ -1,15 +1,16 @@
 "use client";
 
 import Slider, { Settings } from "react-slick";
-import { Movie, MovieCard } from "./MovieCard/MovieCard";
+import { Movie, MovieCard } from "../MovieCard/MovieCard";
 import {
   DiscoverFilterParams,
   SearchFilterParams,
   useDiscover,
-} from "../hooks/useTmdb";
-import { tmdbApiUrl } from "../constants/constants";
+} from "../../hooks/useTmdb";
+import { tmdbApiUrl } from "../../constants/constants";
 import { useState } from "react";
-import { CustomNextArrow, CustomPrevArrow } from "./Slider/Arrows";
+import { CustomNextArrow, CustomPrevArrow } from "./Arrows";
+import { useSlider } from "@/hooks/useSlider";
 
 type SliderRowProps<T extends "search" | "discover"> = {
   listType: T;
@@ -25,6 +26,7 @@ export const SliderRow = <T extends "search" | "discover">({
   listType,
 }: SliderRowProps<T>) => {
   const [dragging, setDragging] = useState(false);
+  const { sliderRef } = useSlider();
 
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useDiscover({
     url: `${tmdbApiUrl}/${listType}/${list}`,
@@ -66,7 +68,7 @@ export const SliderRow = <T extends "search" | "discover">({
   };
 
   return (
-    <Slider {...settings}>
+    <Slider {...settings} ref={sliderRef}>
       {data?.pages.flatMap((page) =>
         page.results.map((movie: Movie) => {
           return (
