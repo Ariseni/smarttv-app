@@ -79,6 +79,8 @@ export const SliderRow = <T extends "search" | "discover">({
               listType={listType}
               key={movie.id}
               {...movie}
+              video="false"
+              adult="false"
             />
           );
         }),

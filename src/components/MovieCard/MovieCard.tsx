@@ -14,6 +14,8 @@ export type Movie = {
   original_language: string;
   release_date: string;
   vote_average: number;
+  video: string;
+  adult: string;
 };
 
 export type MovieCardProps = Movie &
