@@ -6,8 +6,7 @@ export default function DiscoverLayout({
   modal: React.ReactNode;
 }) {
   return (
-    <div className="w-full px-0 sm:px-10">
-      <div id="modal-root" />
+    <div className="w-full px-0 sm:px-10 h-full">
       {children}
       {modal}
     </div>

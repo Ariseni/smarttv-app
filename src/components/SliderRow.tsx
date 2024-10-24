@@ -1,7 +1,7 @@
 "use client";
 
 import Slider, { Settings } from "react-slick";
-import { Movie, MovieCard } from "./MovieCard";
+import { Movie, MovieCard } from "./MovieCard/MovieCard";
 import {
   DiscoverFilterParams,
   SearchFilterParams,
@@ -9,6 +9,7 @@ import {
 } from "../hooks/useTmdb";
 import { tmdbApiUrl } from "../constants/constants";
 import { useState } from "react";
+import { CustomNextArrow, CustomPrevArrow } from "./Slider/Arrows";
 
 type SliderRowProps<T extends "search" | "discover"> = {
   listType: T;
@@ -48,15 +49,20 @@ export const SliderRow = <T extends "search" | "discover">({
 
   const settings: Settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: false,
     beforeChange,
     afterChange,
+    className: "center",
+    centerMode: true,
+    variableWidth: true,
     arrows: true,
     responsive: [{ breakpoint: 480, settings: { arrows: false } }],
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
   };
 
   return (
@@ -65,7 +71,6 @@ export const SliderRow = <T extends "search" | "discover">({
         page.results.map((movie: Movie) => {
           return (
             <MovieCard
-              className="px-0 sm:px-5"
               onClick={(e) => {
                 if (dragging) {
                   e.preventDefault();
@@ -76,7 +81,7 @@ export const SliderRow = <T extends "search" | "discover">({
               {...movie}
             />
           );
-        })
+        }),
       )}
     </Slider>
   );

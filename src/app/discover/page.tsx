@@ -9,10 +9,10 @@ export default function Discover() {
   return (
     <>
       <div id="modal-root" />
-      <div className="h-[100vh]">
+      <div className="hide-scrollbar md:mt-20px-0 mt-5 h-[calc(100vh-160px)] snap-y snap-mandatory overflow-y-auto overscroll-contain sm:px-10">
         {genres?.slice(0, 5).map((genre) => (
           <div
-            className="flex flex-col gap-5 mx-0 sm:mx-5 h-screen"
+            className="relative mx-0 flex h-full snap-center flex-col gap-10 sm:mx-5 md:gap-20"
             key={genre.id}
           >
             <div className="text-[32px] font-bold text-white">{genre.name}</div>
