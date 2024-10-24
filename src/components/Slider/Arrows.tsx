@@ -6,7 +6,7 @@ type ArrowProps = {
 
 export const CustomPrevArrow = (props: ArrowProps) => (
   <div
-    className="absolute left-5 z-10 cursor-pointer rounded-full p-2 hover:bg-[rgba(255,255,255,0.2)]"
+    className="absolute -left-[5px] z-10 flex h-full w-40 cursor-pointer items-center justify-center p-2 hover:bg-[linear-gradient(to_left,_rgba(0,0,0,0.3),_rgba(0,0,0,0.8))]"
     style={{ top: "50%", transform: "translateY(-50%)" }}
     onClick={props.onClick}
   >
@@ -17,7 +17,7 @@ export const CustomPrevArrow = (props: ArrowProps) => (
 // Custom right arrow
 export const CustomNextArrow = (props: ArrowProps) => (
   <div
-    className="absolute right-5 z-10 cursor-pointer rounded-full p-2 hover:bg-[rgba(255,255,255,0.2)]"
+    className="absolute -right-[5px] z-10 flex h-full w-40 cursor-pointer items-center justify-center p-2 hover:bg-[linear-gradient(to_right,_rgba(0,0,0,0.3),_rgba(0,0,0,0.8))]"
     style={{ top: "50%", transform: "translateY(-50%)" }}
     onClick={props.onClick}
   >
