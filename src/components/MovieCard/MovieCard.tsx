@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AnchorHTMLAttributes } from "react";
 import "./MovieCard.css";
 import { Poster } from "./Poster";
+import { useSearchParams } from "next/navigation";
 
 export type Movie = {
   id: string;
@@ -22,10 +23,12 @@ export type MovieCardProps = Movie &
   };
 
 export const MovieCard = (props: MovieCardProps) => {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q");
   const { id, poster_path, listType, ...rest } = props;
 
   return (
-    <Link href={`/${listType}/${id}`} {...rest}>
+    <Link href={`/${listType}/${id}?q=${query}`} {...rest}>
       <div
         key={id}
         className="flex h-full flex-col items-center justify-center gap-5 object-contain"

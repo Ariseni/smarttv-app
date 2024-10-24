@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Slider from "react-slick";
 
 export const useSlider = () => {

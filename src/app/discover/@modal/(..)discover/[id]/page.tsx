@@ -3,7 +3,7 @@ import { Modal } from "./modal";
 import { useParams } from "next/navigation";
 import { useDetails } from "@/hooks/useTmdb";
 import { useFavoritesStore } from "@/store/favorites-store";
-import { Check, MinusIcon, PlusIcon } from "lucide-react";
+import { MinusIcon, PlusIcon } from "lucide-react";
 
 export default function ModalIntercept() {
   const { id } = useParams();
