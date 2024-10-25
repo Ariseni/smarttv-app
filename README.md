@@ -1,29 +1,34 @@
 This is a Next.js project bootstrapped with create-next-app.
 
 Getting Started
+Clone the project
+
 First, run the development server:
 
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying app/page.tsx. The page auto-updates as you edit the file.
+Application consists of 5 pages
 
-This project uses next/font to automatically optimize and load Geist, a new font family for Vercel.
+Discover 
+    - entry page where you can select a movie among a number of genres (or favorites if you've added any)
 
-Learn More
-To learn more about Next.js, take a look at the following resources:
+Search 
+    - Search movies by some text using the input in header, also shows favorites if available
 
-Next.js Documentation - learn about Next.js features and API.
-Learn Next.js - an interactive Next.js tutorial.
-You can check out the Next.js GitHub repository - your feedback and contributions are welcome!
+/search/[id] 
+    - parallel route that shows a modal of a movie selected from the slider. if you copy the link and open it in another browser or refresh the page it will open as a full page (not a modal) 
+    - it contains more data about the movie and options of playing and adding to favorites
+/discover/[id] 
+    - same as search but for discover page
 
-Deploy on Vercel
-The easiest way to deploy your Next.js app is to use the Vercel Platform from the creators of Next.js.
+/watch
+    -watch a movie by searchParams id 
+    - redirects to /discover if movie by id not found
 
-Check out our Next.js deployment documentation for more details.
+API-CLIENT
+Client uses react query to fetch information from the api which then fetches the data (if it's stale) from the 3rd party API (in this case TMDB api)
+
+STORAGE
+application makes use of Zustand store to persist data (favorites store)

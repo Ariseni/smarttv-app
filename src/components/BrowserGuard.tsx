@@ -15,12 +15,14 @@ const isChromeOlderThan66 = (): boolean => {
   return false;
 };
 
-export default function BrowserCheck() {
+export function BrowserGuard() {
   const router = useRouter();
 
   useEffect(() => {
     if (isChromeOlderThan66()) {
       router.push("/fallback");
+    } else {
+      router.replace("/discover");
     }
   }, [router]);
 
