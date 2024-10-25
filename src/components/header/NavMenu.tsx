@@ -4,10 +4,10 @@ import { MenuIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function NavMenu() {
+export function NavMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = (e: any) => {
+  const toggleDropdown = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsOpen((prev) => !prev);
   };

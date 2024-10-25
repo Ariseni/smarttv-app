@@ -2,12 +2,13 @@
 
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 const VideoPlayer = dynamic(() => import("../../components/VideoPlayer"), {
   ssr: false,
 });
 
-export default function page() {
+function Watch() {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const videoKey = searchParams.get("videoKey");
@@ -20,5 +21,13 @@ export default function page() {
     <div>
       <VideoPlayer videoKey={videoKey} />
     </div>
+  );
+}
+
+export default function SuspendedWatch() {
+  return (
+    <Suspense>
+      <Watch />
+    </Suspense>
   );
 }

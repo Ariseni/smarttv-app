@@ -1,10 +1,10 @@
 "use client";
-import { Modal } from "./modal";
 import { useParams } from "next/navigation";
 import { useDetails } from "@/hooks/useTmdb";
 import { useFavoritesStore } from "@/store/favorites-store";
 import { MinusIcon, PlayIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
+import { Modal } from "@/components/Modal";
 
 export default function ModalIntercept() {
   const { id } = useParams();
@@ -17,7 +17,6 @@ export default function ModalIntercept() {
     (video) => video.key && video.site === "YouTube",
   )?.key;
 
-  //TODO !data handling
   return (
     <Modal>
       <div className="flex flex-col gap-5" onClick={(e) => e.stopPropagation()}>

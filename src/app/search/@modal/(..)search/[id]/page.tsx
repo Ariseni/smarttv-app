@@ -1,7 +1,7 @@
 "use client";
-import { Modal } from "./modal";
 import { useParams } from "next/navigation";
 import { useDetails } from "@/hooks/useTmdb";
+import { Modal } from "@/components/Modal";
 
 export default function ModalIntercept() {
   const { id } = useParams();

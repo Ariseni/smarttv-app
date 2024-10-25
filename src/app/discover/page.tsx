@@ -14,7 +14,7 @@ export default function Discover() {
   const { favorites } = useFavoritesStore();
 
   return (
-    <>
+    <div>
       <div className="hide-scrollbar mt-5 h-[calc(100vh-100px)] snap-y snap-mandatory overflow-y-auto overscroll-contain md:mt-[20px]">
         {favorites.length > 0 && (
           <Suspense
@@ -53,6 +53,6 @@ export default function Discover() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

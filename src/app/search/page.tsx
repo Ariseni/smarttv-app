@@ -7,7 +7,7 @@ const FavoritesSlider = lazy(
 );
 const SliderRow = lazy(() => import("../../components/Slider/SliderRow"));
 
-export default function Search() {
+function Search() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
 
@@ -17,7 +17,11 @@ export default function Search() {
         <div className="mx-0 flex flex-col sm:mx-5">
           <h1 className="text-[36px] text-white">Search: "{query}"</h1>
           {query && query.length > 0 ? (
-            <Suspense fallback={<span className="text-white text-[24px]">Loading items...</span>}>
+            <Suspense
+              fallback={
+                <span className="text-[24px] text-white">Loading items...</span>
+              }
+            >
               <SliderRow
                 listType="search"
                 filterParams={{
@@ -29,10 +33,22 @@ export default function Search() {
             <span className="text-[32px] text-white">search for something</span>
           )}
         </div>
-        <Suspense fallback={<span className="text-white text-[24px]">Loading Favorites...</span>}>
+        <Suspense
+          fallback={
+            <div className="text-[24px] text-white">Loading Favorites...</div>
+          }
+        >
           <FavoritesSlider />
         </Suspense>
       </div>
     </>
+  );
+}
+
+export default function SuspendedWatch() {
+  return (
+    <Suspense>
+      <Search />
+    </Suspense>
   );
 }

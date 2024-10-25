@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BrowserCheck from "./browserVersion/page";
 import ReactQueryProvider from "../components/ReactQueryProvider";
-import Header from "../components/header/Header";
+// import { Header } from "../components/header/Header";
 import { ReactNode } from "react";
 import { Metadata } from "next";
 
@@ -25,7 +25,7 @@ export default async function RootLayout({
       </head>
       <body>
         <BrowserCheck />
-        <Header />
+        {/* <Header /> */}
         <ReactQueryProvider>
           <main id="root" className="mt-20 h-[calc(100vh-100px)]">
             {children}

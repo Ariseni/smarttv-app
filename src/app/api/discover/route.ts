@@ -8,7 +8,7 @@ export async function GET(req: Request) {
   const page = searchParams.get("page") || "";
   const with_genres = searchParams.get("with_genres");
   const query = searchParams.get("query");
-  const paramsBuilder: { [key: string]: any } = {
+  const paramsBuilder: { [key: string]: string | null } = {
     page,
     with_genres,
   };

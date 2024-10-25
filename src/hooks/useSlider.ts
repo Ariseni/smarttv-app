@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from "react";
 import Slider, { Settings } from "react-slick";
-import { CustomNextArrow, CustomPrevArrow } from "../components/Slider/Arrows";
 
 export const useSlider = () => {
   const sliderRef = useRef<Slider>(null);
@@ -27,8 +26,8 @@ export const useSlider = () => {
     variableWidth: true,
     arrows: true,
     responsive: [{ breakpoint: 480, settings: { arrows: false } }],
-    nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow/>,
+    // nextArrow: <CustomNextArrow />,
+    // prevArrow: <CustomPrevArrow/>,
   };
 
   useEffect(() => {
