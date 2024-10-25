@@ -46,8 +46,9 @@ export function NavMenu() {
               Search
             </Link>
             <XIcon
-              className="fixed bottom-10"
+              className="fixed bottom-10 flex lg:hidden"
               size={32}
+              color="white"
               onClick={toggleDropdown}
             />
           </div>
