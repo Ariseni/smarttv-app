@@ -20,11 +20,11 @@ export const Poster = ({
   overview,
 }: PosterProps) => {
   return (
-    <div className="group relative aspect-[2/3]  h-[50vh] overflow-hidden transition-all duration-200 hover:z-10 hover:scale-125">
+    <div className="group relative aspect-[2/3] h-[50vh] overflow-hidden transition-all duration-200 hover:z-10 hover:scale-125">
       <img
         src={imageUrl + poster_path}
         alt={title}
-        className="transition-all duration-200 group-hover:scale-110"
+        className="h-full w-full transition-all duration-200 group-hover:scale-110"
         loading="lazy"
       />
       <div className="pointer-events-none absolute top-0 flex h-full w-full flex-col items-center justify-center gap-5 bg-[rgba(0,0,0,0.8)] p-5 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 md:gap-10 md:p-10 lg:gap-20 lg:p-20">
