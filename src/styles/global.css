@@ -83,11 +83,6 @@ body {
   background-color: #eee;
 }
 
-.close-button:after {
-  content: "x";
-  color: black;
-}
-
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

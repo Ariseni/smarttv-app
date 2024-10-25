@@ -3,6 +3,7 @@
 import { type ElementRef, ReactNode, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
+import { XIcon } from "lucide-react";
 
 export function Modal({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -22,7 +23,9 @@ export function Modal({ children }: { children: ReactNode }) {
     <div className="modal-backdrop" onClick={onDismiss}>
       <dialog ref={dialogRef} className="modal" onClose={onDismiss}>
         {children}
-        <button onClick={onDismiss} className="close-button" />
+        <button onClick={onDismiss} className="close-button">
+          <XIcon />
+        </button>
       </dialog>
     </div>,
     document.getElementById("modal-root")!,
