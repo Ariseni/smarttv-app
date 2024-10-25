@@ -21,43 +21,43 @@ export default function ModalIntercept() {
   return (
     <Modal>
       <div className="flex flex-col gap-5" onClick={(e) => e.stopPropagation()}>
-        <h2>{data?.title}</h2>
-        {isFavoriteMovie ? (
-          <button
-            onClick={() => removeFavorite(id as string)}
-            className="flex items-center gap-5 text-[24px]"
-          >
-            <MinusIcon size={32} />
-            Remove from favorites
-          </button>
-        ) : (
-          <div className="flex items-center gap-10">
+        <h2 className="mt-5 text-[24px] md:text-[44px]">{data?.title}</h2>
+        <div className="flex items-center justify-start gap-10">
+          {isFavoriteMovie ? (
             <button
-              className="flex items-center gap-5 rounded-lg p-3 text-[24px] hover:bg-[rgba(0,0,0,0.1)]"
+              onClick={() => removeFavorite(id as string)}
+              className="flex w-fit items-center gap-5 text-[8px] md:text-[24px]"
+            >
+              <MinusIcon size={32} />
+              Remove from favorites
+            </button>
+          ) : (
+            <button
+              className="flex w-fit items-center gap-2 rounded-lg p-3 text-[12px] hover:bg-[rgba(0,0,0,0.1)] md:gap-5 md:text-[24px]"
               onClick={() => data && addFavorite({ ...data, id: id as string })}
             >
               <PlusIcon size={32} color="black" />
-              Add to favorites
+              <span>Add to favorites</span>
             </button>
-            <Link
-              href={`/watch?videoKey=${videoKey}`}
-              className="flex items-center gap-5 rounded-lg p-3 text-[24px] hover:bg-[rgba(0,0,0,0.1)]"
-            >
-              <PlayIcon size={32} color="black" />
-              Play
-            </Link>
-          </div>
-        )}
-        {/* <img src={`${imageUrl}${poster_path}`} alt={title as string} /> */}
+          )}
+          <Link
+            href={`/watch?videoKey=${videoKey}`}
+            className="flex w-fit items-center gap-5 rounded-lg p-3 text-[12px] hover:bg-[rgba(0,0,0,0.1)] md:text-[24px]"
+          >
+            <PlayIcon size={32} color="black" />
+            <span>Play</span>
+          </Link>
+        </div>
         <iframe
           width="100%"
-          height="480"
+          height="300"
+          loading="lazy"
+          className="h-[300px] min-h-[300px] md:h-[480px]"
           src={`https://www.youtube.com/embed/${videoKey}?autoplay=1`}
           title="YouTube video player"
-          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-        ></iframe>
+        />
         <p className="text-[16px] text-gray-600">{data?.overview}</p>
       </div>
     </Modal>

@@ -19,11 +19,11 @@ type SliderRowProps<T extends "search" | "discover"> = {
     : SearchFilterParams;
 };
 
-export const SliderRow = <T extends "search" | "discover">({
+export default function SliderRow<T extends "search" | "discover">({
   list = "movie",
   filterParams,
   listType,
-}: SliderRowProps<T>) => {
+}: SliderRowProps<T>) {
   const [dragging, setDragging] = useState(false);
   const { sliderRef } = useSlider();
 
@@ -94,4 +94,4 @@ export const SliderRow = <T extends "search" | "discover">({
       )}
     </>
   );
-};
+}

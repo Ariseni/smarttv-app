@@ -5,7 +5,7 @@ import { Movie, MovieCard } from "../MovieCard/MovieCard";
 import { useSlider } from "@/hooks/useSlider";
 import { useFavoritesStore } from "@/store/favorites-store";
 
-export const FavoritesSlider = () => {
+export default function FavoritesSlider () {
   const { sliderRef, dragging, settings } = useSlider();
   const { favorites } = useFavoritesStore();
 
