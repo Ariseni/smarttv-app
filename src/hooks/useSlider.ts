@@ -1,9 +1,15 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState, RefObject } from "react";
 import Slider, { Settings } from "react-slick";
 
-export const useSlider = () => {
-  const sliderRef = useRef<Slider>(null);
+// let config = {
+//   root: null,
+//   rootMargin: "0px",
+//   threshold: 0.9,
+// };
+
+export const useSlider = (sliderRef: RefObject<Slider>) => {
   const [dragging, setDragging] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
 
   function beforeChange() {
     setDragging(true);
@@ -11,6 +17,14 @@ export const useSlider = () => {
   const afterChange = () => {
     setDragging(false);
   };
+  /*Not working  yet
+
+  let slickSliders = document.querySelectorAll(".slick-slider");
+  let observer = new IntersectionObserver((entries) => {
+    const entry = entries[0];
+    setIsVisible(entry.isIntersecting);
+  }, config);
+  slickSliders.forEach((slider) => observer.observe(slider)); */
 
   const settings: Settings = {
     dots: false,
@@ -31,7 +45,7 @@ export const useSlider = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       //TODO: fix all sliders activated by keyboard arrows
-      if (!sliderRef.current) return;
+      if (!sliderRef.current /*  || !isVisible */) return;
 
       if (e.key === "ArrowLeft") {
         sliderRef.current.slickPrev();

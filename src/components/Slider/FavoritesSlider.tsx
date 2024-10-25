@@ -5,9 +5,11 @@ import { Movie, MovieCard } from "../MovieCard/MovieCard";
 import { useSlider } from "@/hooks/useSlider";
 import { useFavoritesStore } from "@/store/favorites-store";
 import { CustomNextArrow, CustomPrevArrow } from "./Arrows";
+import { useRef } from "react";
 
 export default function FavoritesSlider() {
-  const { sliderRef, dragging, settings } = useSlider();
+  const sliderRef = useRef<Slider>(null);
+  const { dragging, settings } = useSlider(sliderRef);
   const { favorites } = useFavoritesStore();
 
   return (

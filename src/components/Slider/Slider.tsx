@@ -7,7 +7,7 @@ import {
   SearchFilterParams,
   useDiscover,
 } from "../../hooks/useTmdb";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CustomNextArrow, CustomPrevArrow } from "./Arrows";
 import { useSlider } from "@/hooks/useSlider";
 
@@ -25,7 +25,8 @@ export default function SliderRow<T extends "search" | "discover">({
   listType,
 }: SliderRowProps<T>) {
   const [dragging, setDragging] = useState(false);
-  const { sliderRef } = useSlider();
+  const sliderRef = useRef<Slider>(null);
+  useSlider(sliderRef);
 
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useDiscover({
     url: `${process.env.NEXT_PUBLIC_TMDB_API_URL}/${listType}/${list}`,
