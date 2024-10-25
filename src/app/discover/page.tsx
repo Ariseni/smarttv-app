@@ -15,7 +15,7 @@ export default function Discover() {
 
   return (
     <>
-      <div className="hide-scrollbar mt-5 h-[calc(100vh-100px)] snap-y snap-mandatory overflow-y-auto overscroll-contain sm:px-10 md:mt-[20px]">
+      <div className="hide-scrollbar mt-5 h-[calc(100vh-100px)] snap-y snap-mandatory overflow-y-auto overscroll-contain md:mt-[20px]">
         {favorites.length > 0 && (
           <Suspense
             fallback={
@@ -29,7 +29,7 @@ export default function Discover() {
         )}
         {genres?.slice(0, 5).map((genre) => (
           <div
-            className="relative mx-0 mt-10 flex snap-center flex-col gap-10 sm:mx-5 md:gap-10"
+            className="relative mx-0 mt-10 flex snap-center flex-col gap-10 md:gap-10"
             key={genre.id}
           >
             <Suspense

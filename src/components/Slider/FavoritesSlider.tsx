@@ -10,7 +10,7 @@ export default function FavoritesSlider() {
   const { favorites } = useFavoritesStore();
 
   return (
-    <div className="relative mx-0 flex snap-center flex-col gap-10 sm:mx-5 md:gap-20">
+    <div className="relative mx-0 flex snap-center flex-col gap-10 md:gap-20">
       <div className="px-5 text-[32px] font-bold text-white">Favorites</div>
       <Slider {...settings} ref={sliderRef}>
         {favorites.map((movie: Movie) => {
