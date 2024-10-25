@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-const apiKey = process.env.TMDB_API_KEY; // Replace with your actual API key
+const apiKey = process.env.TMDB_API_KEY;
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -8,10 +8,18 @@ export async function GET(req: Request) {
   const page = searchParams.get("page") || "";
   const with_genres = searchParams.get("with_genres");
   const query = searchParams.get("query");
+  const paramsBuilder: { [key: string]: any } = {
+    page,
+    with_genres,
+  };
+
+  if (query && query.length > 0) {
+    paramsBuilder.query = query;
+  }
 
   try {
     const response = await axios.get(url, {
-      params: { page, with_genres, query },
+      params: paramsBuilder,
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
@@ -30,7 +38,7 @@ export async function GET(req: Request) {
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 }

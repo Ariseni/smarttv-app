@@ -27,7 +27,7 @@ export default async function RootLayout({
         <BrowserCheck />
         <Header />
         <ReactQueryProvider>
-          <main id="root">
+          <main id="root" className="min-h-[calc(100vh-80px)]">
             {children}
             {modal}
             <div id="modal-root" />

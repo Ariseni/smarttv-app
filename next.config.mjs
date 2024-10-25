@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: "./dist", // Changes the build output directory to `./dist/`.
+  distDir: "./dist",
   images: {
     domains: ["image.tmdb.org"],
   },

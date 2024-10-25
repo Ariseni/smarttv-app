@@ -7,12 +7,12 @@ export async function GET(req: Request) {
   const id = searchParams.get("id");
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}?append_to_response=videos`,
+      `${process.env.NEXT_PUBLIC_TMDB_API_URL}/movie/${id}?append_to_response=videos`,
       {
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },
-      }
+      },
     );
 
     return new Response(JSON.stringify(response.data), {
@@ -29,7 +29,7 @@ export async function GET(req: Request) {
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 }

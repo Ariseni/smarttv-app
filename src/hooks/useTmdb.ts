@@ -23,21 +23,22 @@ export const useDiscover = ({ url, filterParams }: TmdbApiParams) => {
     });
     return res.data;
   };
+  console.log(url);
   return useInfiniteQuery({
-    queryKey: [JSON.stringify(filterParams)],
+    queryKey: [url, JSON.stringify(filterParams)],
     queryFn: fetchMovies,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;
       }
-      return undefined; // No more pages
+      return;
     },
     getPreviousPageParam: (lastPage) => {
       if (lastPage.page > 1) {
         return lastPage.page - 1;
       }
-      return undefined; // No more pages
+      return;
     },
   });
 };
@@ -46,7 +47,7 @@ export const useGenres = (list: "movie" | "tv") => {
   const fetchGenres = async () => {
     const response = await axios.get("/api/genres", {
       params: {
-        url: `https://api.themoviedb.org/3/genre/${list}/list?language=en`,
+        url: `${process.env.NEXT_PUBLIC_TMDB_API_URL}/genre/${list}/list?language=en`,
       },
     });
     return response.data.genres as { id: number; name: string }[];

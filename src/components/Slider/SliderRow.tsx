@@ -7,7 +7,6 @@ import {
   SearchFilterParams,
   useDiscover,
 } from "../../hooks/useTmdb";
-import { tmdbApiUrl } from "../../constants/constants";
 import { useState } from "react";
 import { CustomNextArrow, CustomPrevArrow } from "./Arrows";
 import { useSlider } from "@/hooks/useSlider";
@@ -29,7 +28,7 @@ export const SliderRow = <T extends "search" | "discover">({
   const { sliderRef } = useSlider();
 
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useDiscover({
-    url: `${tmdbApiUrl}/${listType}/${list}`,
+    url: `${process.env.NEXT_PUBLIC_TMDB_API_URL}/${listType}/${list}`,
     filterParams,
   });
 
@@ -68,25 +67,31 @@ export const SliderRow = <T extends "search" | "discover">({
   };
 
   return (
-    <Slider {...settings} ref={sliderRef}>
-      {data?.pages.flatMap((page) =>
-        page.results.map((movie: Movie) => {
-          return (
-            <MovieCard
-              onClick={(e) => {
-                if (dragging) {
-                  e.preventDefault();
-                }
-              }}
-              listType={listType}
-              key={movie.id}
-              {...movie}
-              video="false"
-              adult="false"
-            />
-          );
-        }),
+    <>
+      {data ? (
+        <Slider {...settings} ref={sliderRef}>
+          {data?.pages.flatMap((page) =>
+            page.results.map((movie: Movie) => {
+              return (
+                <MovieCard
+                  onClick={(e) => {
+                    if (dragging) {
+                      e.preventDefault();
+                    }
+                  }}
+                  listType={listType}
+                  key={movie.id}
+                  {...movie}
+                  video="false"
+                  adult="false"
+                />
+              );
+            }),
+          )}
+        </Slider>
+      ) : (
+        <>no data</>
       )}
-    </Slider>
+    </>
   );
 };

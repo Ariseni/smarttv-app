@@ -31,7 +31,7 @@ export const MovieCard = (props: MovieCardProps) => {
     <Link href={`/${listType}/${id}?q=${query}`} {...rest}>
       <div
         key={id}
-        className="flex h-full flex-col items-center justify-center gap-5 object-contain"
+        className="flex flex-col items-center justify-center gap-5 object-contain"
       >
         {poster_path ? (
           <Poster {...props} />

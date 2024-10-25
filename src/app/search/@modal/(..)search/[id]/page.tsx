@@ -6,15 +6,14 @@ import { useDetails } from "@/hooks/useTmdb";
 export default function ModalIntercept() {
   const { id } = useParams();
   const { data } = useDetails(id as string);
-  //todo fetch video data from id on modal open
+
   const videoKey = data?.videos.results.find(
-    (video) => video.key && video.site === "Youtube"
+    (video) => video.key && video.site === "Youtube",
   );
   return (
     <Modal>
       <div className="flex flex-col gap-5" onClick={(e) => e.stopPropagation()}>
         <h2>{data?.title}</h2>
-        {/* <img src={`${imageUrl}${poster_path}`} alt={title as string} /> */}
         <iframe
           width="100%"
           height="480"

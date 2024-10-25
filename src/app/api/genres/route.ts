@@ -8,12 +8,12 @@ export async function GET(req: Request) {
 
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/genre/${list}/list?language=en`,
+      `${process.env.NEXT_PUBLIC_TMDB_API_URL}/genre/${list}/list?language=en`,
       {
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },
-      }
+      },
     );
     return new Response(JSON.stringify(response.data), {
       status: 200,
@@ -29,7 +29,7 @@ export async function GET(req: Request) {
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 }

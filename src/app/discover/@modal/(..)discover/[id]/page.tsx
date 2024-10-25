@@ -3,7 +3,8 @@ import { Modal } from "./modal";
 import { useParams } from "next/navigation";
 import { useDetails } from "@/hooks/useTmdb";
 import { useFavoritesStore } from "@/store/favorites-store";
-import { MinusIcon, PlusIcon } from "lucide-react";
+import { MinusIcon, PlayIcon, PlusIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function ModalIntercept() {
   const { id } = useParams();
@@ -13,8 +14,8 @@ export default function ModalIntercept() {
   const isFavoriteMovie = isFavorite(id as string);
 
   const videoKey = data?.videos.results.find(
-    (video) => video.key && video.site === "Youtube",
-  );
+    (video) => video.key && video.site === "YouTube",
+  )?.key;
 
   //TODO !data handling
   return (
@@ -30,13 +31,22 @@ export default function ModalIntercept() {
             Remove from favorites
           </button>
         ) : (
-          <button
-            className="flex items-center gap-5 text-[24px]"
-            onClick={() => data && addFavorite({ ...data, id: id as string })}
-          >
-            <PlusIcon size={32} color="black" />
-            Add to favorites
-          </button>
+          <div className="flex items-center gap-10">
+            <button
+              className="flex items-center gap-5 rounded-lg p-3 text-[24px] hover:bg-[rgba(0,0,0,0.1)]"
+              onClick={() => data && addFavorite({ ...data, id: id as string })}
+            >
+              <PlusIcon size={32} color="black" />
+              Add to favorites
+            </button>
+            <Link
+              href={`/watch?videoKey=${videoKey}`}
+              className="flex items-center gap-5 rounded-lg p-3 text-[24px] hover:bg-[rgba(0,0,0,0.1)]"
+            >
+              <PlayIcon size={32} color="black" />
+              Play
+            </Link>
+          </div>
         )}
         {/* <img src={`${imageUrl}${poster_path}`} alt={title as string} /> */}
         <iframe
