@@ -28,7 +28,7 @@ export function Search() {
           onFocus={() => setKeyboardOpen(true)}
         />
         {keyboardOpen && (
-          <div className="absolute right-0 top-[50px] z-10 flex flex-col items-end bg-white">
+          <div className="hidden absolute right-0 top-[50px] z-10 lg:flex flex-col items-end bg-white">
             <button
               className="rounded-lg bg-white"
               onClick={() => setKeyboardOpen(false)}
