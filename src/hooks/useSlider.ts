@@ -26,12 +26,11 @@ export const useSlider = () => {
     variableWidth: true,
     arrows: true,
     responsive: [{ breakpoint: 480, settings: { arrows: false } }],
-    // nextArrow: <CustomNextArrow />,
-    // prevArrow: <CustomPrevArrow/>,
   };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      //TODO: fix all sliders activated by keyboard arrows
       if (!sliderRef.current) return;
 
       if (e.key === "ArrowLeft") {

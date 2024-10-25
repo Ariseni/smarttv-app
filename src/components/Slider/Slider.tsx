@@ -90,7 +90,7 @@ export default function SliderRow<T extends "search" | "discover">({
           )}
         </Slider>
       ) : (
-        <>no data</>
+        <span className="text-[32px] text-white">no data</span>
       )}
     </>
   );

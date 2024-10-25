@@ -7,7 +7,7 @@ import { lazy, Suspense } from "react";
 const FavoritesSlider = lazy(
   () => import("../../components/Slider/FavoritesSlider"),
 );
-const SliderRow = lazy(() => import("../../components/Slider/SliderRow"));
+const SliderRow = lazy(() => import("../../components/Slider/Slider"));
 
 export default function Discover() {
   const { data: genres } = useGenres("movie");

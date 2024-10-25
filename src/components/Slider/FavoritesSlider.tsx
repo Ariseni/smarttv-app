@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { Movie, MovieCard } from "../MovieCard/MovieCard";
 import { useSlider } from "@/hooks/useSlider";
 import { useFavoritesStore } from "@/store/favorites-store";
+import { CustomNextArrow, CustomPrevArrow } from "./Arrows";
 
 export default function FavoritesSlider() {
   const { sliderRef, dragging, settings } = useSlider();
@@ -12,7 +13,12 @@ export default function FavoritesSlider() {
   return (
     <div className="relative mx-0 flex snap-center flex-col gap-10 md:gap-20">
       <div className="px-5 text-[32px] font-bold text-white">Favorites</div>
-      <Slider {...settings} ref={sliderRef}>
+      <Slider
+        {...settings}
+        ref={sliderRef}
+        nextArrow={<CustomNextArrow />}
+        prevArrow={<CustomPrevArrow />}
+      >
         {favorites.map((movie: Movie) => {
           return (
             <MovieCard
