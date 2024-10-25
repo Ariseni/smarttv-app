@@ -77,7 +77,7 @@ export const useDetails = (id: string) => {
   });
 };
 
-type Details = Movie & {
+export type Details = Movie & {
   videos: {
     results: {
       key: string;

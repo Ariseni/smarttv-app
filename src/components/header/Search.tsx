@@ -17,7 +17,7 @@ export function Search() {
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="fixed right-5 flex items-center space-x-2">
       <div className="relative">
         <input
           type="text"

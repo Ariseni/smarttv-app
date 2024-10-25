@@ -15,8 +15,7 @@ export default function Discover() {
 
   return (
     <>
-      <div id="modal-root" />
-      <div className="hide-scrollbar md:mt-20px-0 mt-5 h-[calc(100vh-100px)] snap-y snap-mandatory overflow-y-auto overscroll-contain sm:px-10">
+      <div className="hide-scrollbar mt-5 h-[calc(100vh-100px)] snap-y snap-mandatory overflow-y-auto overscroll-contain sm:px-10 md:mt-[20px]">
         {favorites.length > 0 && (
           <Suspense
             fallback={
@@ -30,7 +29,7 @@ export default function Discover() {
         )}
         {genres?.slice(0, 5).map((genre) => (
           <div
-            className="relative mx-0 mt-20 flex snap-center flex-col gap-10 sm:mx-5 md:gap-10"
+            className="relative mx-0 mt-10 flex snap-center flex-col gap-10 sm:mx-5 md:gap-10"
             key={genre.id}
           >
             <Suspense
@@ -40,7 +39,7 @@ export default function Discover() {
                 </span>
               }
             >
-              <div className="text-[32px] font-bold text-white">
+              <div className="px-5 text-[32px] font-bold text-white">
                 {genre.name}
               </div>
 
