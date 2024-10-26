@@ -5,7 +5,7 @@ import ReactQueryProvider from "../components/ReactQueryProvider";
 import { Header } from "../components/header/Header";
 import { ReactNode } from "react";
 import { Metadata } from "next";
-import { BrowserGuard } from "@/components/BrowserGuard";
+import { BrowserGuardProvider } from "@/components/BrowserGuard";
 
 export const metadata: Metadata = {
   title: "Smart TV App",
@@ -24,15 +24,16 @@ export default async function RootLayout({
         <link rel="icon" href="/monitor.png" />
       </head>
       <body>
-        <BrowserGuard />
-        <Header />
-        <ReactQueryProvider>
-          <main id="root" className="mt-20 h-[calc(100vh-100px)]">
-            {children}
-            {modal}
-            <div id="modal-root" />
-          </main>
-        </ReactQueryProvider>
+        <BrowserGuardProvider>
+          <Header />
+          <ReactQueryProvider>
+            <main id="root" className="mt-20 h-[calc(100vh-100px)]">
+              {children}
+              {modal}
+              <div id="modal-root" />
+            </main>
+          </ReactQueryProvider>
+        </BrowserGuardProvider>
       </body>
     </html>
   );

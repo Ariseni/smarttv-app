@@ -1,7 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { createContext, useContext, useEffect, ReactNode } from "react";
 import { useRouter } from "next/navigation";
+
+const BrowserGuardContext = createContext<{
+  isBrowserCompatible: boolean;
+} | null>(null);
 
 const isChromeOlderThan66 = (): boolean => {
   const userAgent = window.navigator.userAgent;
@@ -15,16 +19,30 @@ const isChromeOlderThan66 = (): boolean => {
   return false;
 };
 
-export function BrowserGuard() {
+export function BrowserGuardProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
     if (isChromeOlderThan66()) {
       router.push("/fallback");
-    } else {
-      router.replace("/discover");
     }
   }, [router]);
 
-  return null;
+  return (
+    <BrowserGuardContext.Provider
+      value={{ isBrowserCompatible: !isChromeOlderThan66() }}
+    >
+      {children}
+    </BrowserGuardContext.Provider>
+  );
+}
+
+export function useBrowserGuard() {
+  const context = useContext(BrowserGuardContext);
+  if (!context) {
+    throw new Error(
+      "useBrowserGuard must be used within a BrowserGuardProvider",
+    );
+  }
+  return context;
 }
