@@ -25,8 +25,8 @@ export default function SliderRow<T extends "search" | "discover">({
   listType,
 }: SliderRowProps<T>) {
   const [dragging, setDragging] = useState(false);
-  const sliderRef = useRef<Slider>(null);
-  useSlider(sliderRef);
+  const intersectionRef = useRef<HTMLDivElement>(null);
+  const { sliderRef } = useSlider(intersectionRef);
 
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useDiscover({
     url: `${process.env.NEXT_PUBLIC_TMDB_API_URL}/${listType}/${list}`,
@@ -69,6 +69,10 @@ export default function SliderRow<T extends "search" | "discover">({
 
   return (
     <>
+      <div
+        ref={intersectionRef}
+        className="absolute left-[50%] top-[50%] z-10 h-20 w-20 md:h-[300px] md:w-[300px]"
+      />
       {data ? (
         <Slider {...settings} ref={sliderRef}>
           {data?.pages.flatMap((page) =>

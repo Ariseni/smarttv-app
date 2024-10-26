@@ -1,15 +1,10 @@
-import { useEffect, useState, RefObject } from "react";
+import { useEffect, useState, RefObject, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 
-// let config = {
-//   root: null,
-//   rootMargin: "0px",
-//   threshold: 0.9,
-// };
-
-export const useSlider = (sliderRef: RefObject<Slider>) => {
+export const useSlider = (intersectionRef: RefObject<HTMLDivElement>) => {
+  const sliderRef = useRef<Slider>(null);
   const [dragging, setDragging] = useState(false);
-  // const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   function beforeChange() {
     setDragging(true);
@@ -17,14 +12,31 @@ export const useSlider = (sliderRef: RefObject<Slider>) => {
   const afterChange = () => {
     setDragging(false);
   };
-  /*Not working  yet
+  // Not working  yet
 
-  let slickSliders = document.querySelectorAll(".slick-slider");
-  let observer = new IntersectionObserver((entries) => {
-    const entry = entries[0];
-    setIsVisible(entry.isIntersecting);
-  }, config);
-  slickSliders.forEach((slider) => observer.observe(slider)); */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // `entry.isIntersecting` means any part of the element is visible
+        // `entry.intersectionRatio === 1` means the element is fully visible
+        console.log(entry.isIntersecting, entry.intersectionRatio);
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio === 1);
+      },
+      {
+        threshold: 1.0, // 1.0 means 100% of the element must be visible
+      },
+    );
+    console.log(intersectionRef.current);
+    if (intersectionRef.current) {
+      observer.observe(intersectionRef.current);
+    }
+
+    return () => {
+      if (intersectionRef.current) {
+        observer.unobserve(intersectionRef.current);
+      }
+    };
+  }, []);
 
   const settings: Settings = {
     dots: false,
@@ -45,8 +57,8 @@ export const useSlider = (sliderRef: RefObject<Slider>) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       //TODO: fix all sliders activated by keyboard arrows
-      if (!sliderRef.current /*  || !isVisible */) return;
-
+      console.log(isVisible);
+      if (!sliderRef.current || !isVisible) return;
       if (e.key === "ArrowLeft") {
         sliderRef.current.slickPrev();
       } else if (e.key === "ArrowRight") {
@@ -59,6 +71,6 @@ export const useSlider = (sliderRef: RefObject<Slider>) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [isVisible]);
   return { sliderRef, settings, dragging };
 };

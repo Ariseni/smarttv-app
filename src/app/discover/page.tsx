@@ -15,21 +15,10 @@ export default function Discover() {
 
   return (
     <div>
-      <div className="hide-scrollbar mt-5 h-[calc(100vh-100px)] snap-y snap-mandatory overflow-y-auto overscroll-contain md:mt-[20px]">
-        {favorites.length > 0 && (
-          <Suspense
-            fallback={
-              <span className="text-[24px] text-white">
-                Loading Favorites...
-              </span>
-            }
-          >
-            <FavoritesSlider />
-          </Suspense>
-        )}
+      <div className="hide-scrollbar mt-5 h-[calc(100vh-100px)] snap-y snap-mandatory overflow-y-auto overscroll-contain md:mt-[20px] pb-60">
         {genres?.slice(0, 5).map((genre) => (
           <div
-            className="relative mx-0 mt-10 flex snap-center flex-col gap-10 md:gap-10"
+            className="relative mx-0 my-10 flex snap-center flex-col gap-10 md:gap-10"
             key={genre.id}
           >
             <Suspense
@@ -52,6 +41,17 @@ export default function Discover() {
             </Suspense>
           </div>
         ))}
+        {favorites.length > 0 && (
+          <Suspense
+            fallback={
+              <span className="text-[24px] text-white">
+                Loading Favorites...
+              </span>
+            }
+          >
+            <FavoritesSlider />
+          </Suspense>
+        )}
       </div>
     </div>
   );
