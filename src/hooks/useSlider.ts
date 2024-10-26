@@ -12,21 +12,16 @@ export const useSlider = (intersectionRef: RefObject<HTMLDivElement>) => {
   const afterChange = () => {
     setDragging(false);
   };
-  // Not working  yet
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // `entry.isIntersecting` means any part of the element is visible
-        // `entry.intersectionRatio === 1` means the element is fully visible
-        console.log(entry.isIntersecting, entry.intersectionRatio);
         setIsVisible(entry.isIntersecting && entry.intersectionRatio === 1);
       },
       {
-        threshold: 1.0, // 1.0 means 100% of the element must be visible
+        threshold: 1.0, 
       },
     );
-    console.log(intersectionRef.current);
     if (intersectionRef.current) {
       observer.observe(intersectionRef.current);
     }
@@ -56,8 +51,6 @@ export const useSlider = (intersectionRef: RefObject<HTMLDivElement>) => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      //TODO: fix all sliders activated by keyboard arrows
-      console.log(isVisible);
       if (!sliderRef.current || !isVisible) return;
       if (e.key === "ArrowLeft") {
         sliderRef.current.slickPrev();

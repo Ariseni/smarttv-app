@@ -23,7 +23,6 @@ export const useDiscover = ({ url, filterParams }: TmdbApiParams) => {
     });
     return res.data;
   };
-  console.log(url);
   return useInfiniteQuery({
     queryKey: [url, JSON.stringify(filterParams)],
     queryFn: fetchMovies,
