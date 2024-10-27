@@ -18,7 +18,7 @@ export default function FavoritesSlider() {
       {/* intersectionRef is used to see which slider is currently fully visible to enable keyboard slide */}
       <div
         ref={intersectionRef}
-        className="absolute left-[50%] top-[50%] z-10 h-20 w-20 md:h-[300px] md:w-[300px]"
+        className="absolute left-[50%] top-[50%] h-20 w-20 md:h-[300px] md:w-[300px]"
       />
       <Slider
         {...settings}

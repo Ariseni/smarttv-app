@@ -71,7 +71,7 @@ export default function SliderRow<T extends "search" | "discover">({
     <>
       <div
         ref={intersectionRef}
-        className="absolute left-[50%] top-[50%] z-10 h-20 w-20 md:h-[300px] md:w-[300px]"
+        className="absolute left-[50%] top-[50%] h-20 w-20 md:h-[300px] md:w-[300px]"
       />
       {data ? (
         <Slider {...settings} ref={sliderRef}>
