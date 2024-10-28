@@ -2,10 +2,11 @@ This is a Next.js project bootstrapped with create-next-app.
 
 Getting Started
 Clone the project
+git clonse https://github.com/Ariseni/smarttv-app.git
 
 First, run the development server:
 
-npm run dev
+npm run dev (optionally run npm install to install the deps)
 
 Open http://localhost:3000 with your browser to see the result.
 
