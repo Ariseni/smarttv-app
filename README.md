@@ -25,7 +25,8 @@ Search
     - same as search but for discover page
 
 /watch
-    -watch a movie by searchParams id 
+    - you can get here by selecting play on movie modal
+    - watch a movie by searchParams id 
     - redirects to /discover if movie by id not found
 
 API-CLIENT
